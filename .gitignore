@@ -1,0 +1,9 @@
+.idea
+.vscode
+
+node_modules
+*.env
+!*.example.env
+
+dist
+____*
