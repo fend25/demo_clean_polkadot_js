@@ -1,17 +1,16 @@
 {
   "name": "demo_pure_polkadot_js",
   "version": "1.0.0",
-  "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "@polkadot/api": "^10.0.1",
-    "@polkadot/keyring": "^11.0.1",
-    "@polkadot/types": "^10.0.1",
-    "@unique-nft/opal-testnet-types": "^937.53.1"
+    "@polkadot/api": "^10.9.1",
+    "@polkadot/keyring": "^12.3.2",
+    "@polkadot/types": "^10.9.1",
+    "@unique-nft/opal-testnet-types": "^942.57.0"
   },
   "devDependencies": {
-    "tsx": "^3.12.3",
-    "typescript": "^4.9.5",
-    "vitest": "^0.29.2"
+    "tsx": "^3.12.7",
+    "typescript": "^5.1.6",
+    "vitest": "^0.33.0"
   }
 }
