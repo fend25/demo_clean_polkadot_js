@@ -131,6 +131,13 @@ describe('demo', async () => {
     expect(collectionId).toBeGreaterThan(0)
   })
 
+  test('get collection limits', async () => {
+    const collection = await api.rpc.unique.collectionById(collectionId)
+    const transfersEnabled = collection.unwrap().limits.transfersEnabled.toHuman()
+    expect(transfersEnabled).toBeDefined()
+    console.log(`For collection ${collectionId} transfersEnabled flag is:`, transfersEnabled)
+  })
+
   afterAll(async () => {
     await api.disconnect()
   })
