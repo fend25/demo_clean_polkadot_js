@@ -1,4 +1,5 @@
 import '@unique-nft/opal-testnet-types/augment-api'
+import '@unique-nft/opal-testnet-types/augment-api-tx'
 import OpalDefinitions from '@unique-nft/opal-testnet-types/unique/definitions'
 
 import {describe, test, expect, beforeAll, afterAll} from 'vitest'
@@ -10,6 +11,7 @@ import {ApiPromise, SubmittableResult, WsProvider} from '@polkadot/api'
 
 import {SubmittableExtrinsic} from '@polkadot/api/promise/types'
 import type {ISubmittableResult} from '@polkadot/types/types'
+import {SchemaTools} from '@unique-nft/schemas'
 
 ////////////////////////////////////////////////
 // necessary auxiliary methods for polkadot.js
@@ -84,6 +86,14 @@ const getTransactionStatus = ({events, status}: SubmittableResult): TransactionS
 ///////////////////////////////////////////
 
 const createNFTCollection = async (api: ApiPromise, account: KeyringPair): Promise<number> => {
+  const collectionData = SchemaTools.encode.collection({
+    schemaName: 'unique',
+    schemaVersion: '2.0.0',
+    cover_image: {
+      url: 'https://ipfs.unique.network/ipfs/QmcAcH4F9HYQtpqKHxBFwGvkfKb8qckXj2YWUrcc8yd24G/image1.png'
+    },
+  }, {})
+
   const result = await signAndSend(api.tx.unique.createCollectionEx({
     name: [97, 98, 99],
     description: [97, 98, 99],
@@ -93,7 +103,9 @@ const createNFTCollection = async (api: ApiPromise, account: KeyringPair): Promi
         tokenOwner: true,
         collectionAdmin: true,
       }
-    }
+    },
+    properties: collectionData.collectionProperties.map(({key, valueHex}) => ({key, value: valueHex})),
+    tokenPropertyPermissions: collectionData.tokenPropertyPermissions,
   }), account)
 
   const collectionIdStr = result.events.find(e => e.event.data.method === 'CollectionCreated')?.event.data[0].toHuman()
@@ -101,6 +113,7 @@ const createNFTCollection = async (api: ApiPromise, account: KeyringPair): Promi
   if (isNaN(collectionId)) {
     throw new Error('Collection id not found')
   }
+  console.log(`Collection created with id ${collectionId}`)
 
   return collectionId
 }
