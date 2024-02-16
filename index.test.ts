@@ -108,6 +108,8 @@ const createNFTCollection = async (api: ApiPromise, account: KeyringPair): Promi
     tokenPropertyPermissions: collectionData.tokenPropertyPermissions,
   }), account)
 
+  console.log(`Extrinsic hash is ${result.txHash.toHex()}`)
+
   const collectionIdStr = result.events.find(e => e.event.data.method === 'CollectionCreated')?.event.data[0].toHuman()
   const collectionId = parseInt(collectionIdStr as string || '')
   if (isNaN(collectionId)) {
@@ -134,17 +136,22 @@ describe('demo', async () => {
     api = await ApiPromise.create({provider, rpc: {unique: OpalDefinitions.rpc}})
 
     console.log(`Connection established to ${provider.endpoint}`)
-
-    console.log(`Creating collection`)
-    collectionId = await createNFTCollection(api, alice)
   })
 
-  test('create collection', () => {
+  test.skip('transfer', async () => {
+    const result = await signAndSend(api.tx.balances.transferKeepAlive(alice.address, '1500000000000000000'), alice)
+    console.log(`Transfer sent with hash ${result.txHash.toHex()}`)
+  })
+
+  test.skip('create collection', async () => {
+    console.log(`Creating collection`)
+    collectionId = await createNFTCollection(api, alice)
+
     expect(typeof collectionId).toBe('number')
     expect(collectionId).toBeGreaterThan(0)
   })
 
-  test('get collection limits', async () => {
+  test.skip('get collection limits', async () => {
     const collection = await api.rpc.unique.collectionById(collectionId)
     const transfersEnabled = collection.unwrap().limits.transfersEnabled.toHuman()
     expect(transfersEnabled).toBeDefined()

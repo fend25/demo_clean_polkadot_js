@@ -2,6 +2,9 @@
   "name": "demo_pure_polkadot_js",
   "version": "1.0.0",
   "license": "MIT",
+  "scripts": {
+    "test": "vitest run"
+  },
   "dependencies": {
     "@polkadot/api": "^10.11.2",
     "@polkadot/keyring": "^12.6.2",
