@@ -87,8 +87,6 @@ const getTransactionStatus = ({events, status}: SubmittableResult): TransactionS
 
 const createNFTCollection = async (api: ApiPromise, account: KeyringPair): Promise<number> => {
   const collectionData = SchemaTools.encode.collection({
-    schemaName: 'unique',
-    schemaVersion: '2.0.0',
     cover_image: {
       url: 'https://ipfs.unique.network/ipfs/QmcAcH4F9HYQtpqKHxBFwGvkfKb8qckXj2YWUrcc8yd24G/image1.png'
     },

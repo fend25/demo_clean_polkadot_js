@@ -12,7 +12,7 @@
     "@unique-nft/opal-testnet-types": "^1003.70.0",
     "@unique-nft/quartz-mainnet-types": "^1003.70.0",
     "@unique-nft/unique-mainnet-types": "^1003.70.0",
-    "@unique-nft/schemas": "^2.0.0"
+    "@unique-nft/schemas": "^2.0.1"
   },
   "devDependencies": {
     "tsx": "^4.7.0",
