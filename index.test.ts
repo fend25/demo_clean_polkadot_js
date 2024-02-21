@@ -114,6 +114,7 @@ const createNFTCollection = async (api: ApiPromise, account: KeyringPair): Promi
     throw new Error('Collection id not found')
   }
   console.log(`Collection created with id ${collectionId}`)
+  console.log(`https://rest.unq.uniq.su/v1/collections?collectionId=${collectionId}&tokenId=1`)
 
   return collectionId
 }
@@ -141,7 +142,7 @@ describe('demo', async () => {
     console.log(`Transfer sent with hash ${result.txHash.toHex()}`)
   })
 
-  test.skip('create collection', async () => {
+  test('create collection', async () => {
     console.log(`Creating collection`)
     collectionId = await createNFTCollection(api, alice)
 

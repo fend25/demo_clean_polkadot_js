@@ -646,10 +646,10 @@
   resolved "https://registry.yarnpkg.com/@unique-nft/quartz-mainnet-types/-/quartz-mainnet-types-1003.70.0.tgz#7cf6a20e72c302e05e40623bc80996382e3cde1e"
   integrity sha512-qs5iwMcDpBeJ6mXzSAbMB6DY9NkdAqPD1KmekOVG9Vug+hKWvSlfW5ozd63O/J2h7iliqwL0WZjDdwvBNdcTNg==
 
-"@unique-nft/schemas@^2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@unique-nft/schemas/-/schemas-2.0.1.tgz#8680d1add1f31f2a17317ce9bf8d31a182fb701a"
-  integrity sha512-3vv6E6G/cJ6ZSVkVGVgBwW8SnjJ/NM75BTXaUH6gsH1594m22U3ofuZrZhRElsEECwU8jAPmfEK4xDaRY5VM7A==
+"@unique-nft/schemas@^2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@unique-nft/schemas/-/schemas-2.0.3.tgz#a8b1ad3b54684ed8f4adfa56c40abbac01a4b83b"
+  integrity sha512-JwFTFkEhy9DpMnCHok2hFfT1JK4h9kDbNBM7T1A3DlE/19eO55OogyeRRn2QW8f9n+lMlDVUMWjgPPe5SCnflA==
   dependencies:
     "@unique-nft/utils" "^0.3.17"
     axios "^1.6.7"
