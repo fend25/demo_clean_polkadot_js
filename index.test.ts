@@ -96,7 +96,7 @@ const createNFTCollection = async (api: ApiPromise, account: KeyringPair): Promi
     name: [97, 98, 99],
     description: [97, 98, 99],
     tokenPrefix: [97, 98, 99],
-    permission: {
+    permissions: {
       nesting: {
         tokenOwner: true,
         collectionAdmin: true,
@@ -114,7 +114,7 @@ const createNFTCollection = async (api: ApiPromise, account: KeyringPair): Promi
     throw new Error('Collection id not found')
   }
   console.log(`Collection created with id ${collectionId}`)
-  console.log(`https://rest.unq.uniq.su/v1/collections?collectionId=${collectionId}&tokenId=1`)
+  console.log(`https://rest.unq.uniq.su/v1/collections?collectionId=${collectionId}`)
 
   return collectionId
 }
