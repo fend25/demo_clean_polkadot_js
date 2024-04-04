@@ -15,8 +15,8 @@
     "@unique-nft/schemas": "^2.0.3"
   },
   "devDependencies": {
-    "tsx": "^4.7.0",
-    "typescript": "^5.3.3",
-    "vitest": "^1.2.2"
+    "tsx": "^4.7.2",
+    "typescript": "^5.4.3",
+    "vitest": "^1.4.0"
   }
 }

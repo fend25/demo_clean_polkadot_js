@@ -97,11 +97,16 @@ const createNFTCollection = async (api: ApiPromise, account: KeyringPair): Promi
     description: [97, 98, 99],
     tokenPrefix: [97, 98, 99],
     permissions: {
+      access: 'AllowList',
       nesting: {
         tokenOwner: true,
         collectionAdmin: true,
       }
     },
+    limits: {
+      ownerCanDestroy: true,
+    },
+    flags: 64,
     properties: collectionData.collectionProperties.map(({key, valueHex}) => ({key, value: valueHex})),
     tokenPropertyPermissions: collectionData.tokenPropertyPermissions,
   }), account)
