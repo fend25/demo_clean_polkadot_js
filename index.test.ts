@@ -90,7 +90,9 @@ const createNFTCollection = async (api: ApiPromise, account: KeyringPair): Promi
     cover_image: {
       url: 'https://ipfs.unique.network/ipfs/QmcAcH4F9HYQtpqKHxBFwGvkfKb8qckXj2YWUrcc8yd24G/image1.png'
     },
-  }, {})
+  }, {
+    overwriteTPPs: [{key: 'a', permission: SchemaTools.tools.constants.DEFAULT_PERMISSION}],
+  })
 
   const result = await signAndSend(api.tx.unique.createCollectionEx({
     name: [97, 98, 99],
@@ -106,7 +108,7 @@ const createNFTCollection = async (api: ApiPromise, account: KeyringPair): Promi
     limits: {
       ownerCanDestroy: true,
     },
-    flags: 64,
+    flags: new Uint8Array([64]),
     properties: collectionData.collectionProperties.map(({key, valueHex}) => ({key, value: valueHex})),
     tokenPropertyPermissions: collectionData.tokenPropertyPermissions,
   }), account)
@@ -153,6 +155,24 @@ describe('demo', async () => {
 
     expect(typeof collectionId).toBe('number')
     expect(collectionId).toBeGreaterThan(0)
+  })
+
+  test.skip('create token', async () => {
+    const result = await signAndSend(api.tx.unique.createMultipleItemsEx(
+        collectionId,
+        {
+          //@ts-ignore
+          nft: [
+            {
+              properties: [{key: '0x61' as any, value: '0x62' as any}],
+              owner: {Substrate: alice.address} as any,
+            }
+          ]
+        }),
+      alice
+    )
+
+    console.log(result)
   })
 
   test.skip('get collection limits', async () => {
